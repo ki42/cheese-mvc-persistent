@@ -1,10 +1,8 @@
 package org.launchcode.models;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by LaunchCode
@@ -24,11 +22,16 @@ public class Cheese {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-    private CheeseType type;
+    @ManyToOne
+    private Category category;
 
-    public Cheese(String name, String description) {
+    @ManyToMany(mappedBy = "cheeses")
+    private List<Menu> menus;
+
+    public Cheese(String name, String description, List<Menu> menus) {
         this.name = name;
         this.description = description;
+        this.menus = menus;
     }
 
     public Cheese() { }
@@ -53,11 +56,11 @@ public class Cheese {
         this.description = description;
     }
 
-    public CheeseType getType() {
-        return type;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setType(CheeseType type) {
-        this.type = type;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

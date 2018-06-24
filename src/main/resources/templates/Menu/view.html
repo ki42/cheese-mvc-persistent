@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<h1 th:text="*{title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<p th:unless="${cheeses.size()}">No cheeses yet!</p>
+<ul>
+        <li th:each="acheese : ${cheeses}" th:text="*{acheese.name}"></li>
+</ul>
+
+<p><a th:href="'/menu/add-item/' + ${menuId}">Add Cheese</a></p>
+</body>
+</html>
