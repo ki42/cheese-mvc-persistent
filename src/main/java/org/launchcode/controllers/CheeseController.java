@@ -83,8 +83,8 @@ public class CheeseController {
         return "redirect:";
     }
 
-   //This came from the videos, I am not seeing it in the studio walkthrough...it is not currently functioning.
-    @RequestMapping(value = "category", method = RequestMethod.GET)
+   //This is a bonus mission, it is not currently functioning.
+    @RequestMapping(value = "category/{id}", method = RequestMethod.GET)
     public String category (Model model, @RequestParam int id) {
         Category cat = categoryDao.findOne(id);
         List<Cheese> cheeses = cat.getCheeses();
